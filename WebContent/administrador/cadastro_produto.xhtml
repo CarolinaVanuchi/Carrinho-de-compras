@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/template_administrador.xhtml">
+		<ui:define name="conteudo">
+			<!-- TITULO -->
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-header">Cadastro de produto</h1>
+				</div>
+			</div>
+			<!-- FIM TITULO -->
+			<h:form>
+				<h:messages />
+				<h:panelGrid columns="2">
+
+					<h:outputText value="Marca*" />
+					<p:inputText value="#{produtoMB.objeto.marca}" style="width:210px" />
+
+					<h:outputText value="Categoria*" />
+					<p:inputText value="#{produtoMB.objeto.categoria}"
+						style="width:210px" />
+
+					<h:outputText value="Nome*" />
+					<p:inputText value="#{produtoMB.objeto.descricao}"
+						style="width:210px" />
+					<h:outputText value="Quantidade*" />
+					<p:inputText value="#{produtoMB.objeto.quantidade}"
+						style="width:210px" />
+					<h:outputText value="Preço*" />
+					<p:inputText value="#{produtoMB.objeto.preco}" style="width:210px" />
+
+
+					<p:commandButton value="Salvar" styleClass="ui-priority-primary"
+						action="#{produtoMB.salvar()}" ajax="false" />
+					<p:commandButton value="Cancelar" action="#{produtoMB.cancelar()}"
+						ajax="false" />
+				</h:panelGrid>
+			</h:form>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

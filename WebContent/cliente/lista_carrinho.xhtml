@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/template_carrinho_compras.xhtml">
+		<ui:define name="conteudo">
+			<!-- TITULO -->
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-header">Produtos</h1>
+
+				</div>
+			</div>
+			<!-- FIM TITULO -->
+			<!-- BOTÃO COMPRAR -->
+			<div class="row container-fluid">
+				<div class="col-md-2">
+					<h:form id="frmCadastrar">
+						<p:commandButton icon="ui-icon-plus" value="Finalizar compra"
+							title="Finalizar compra" alt="botão finalizar compra"
+							styleClass="btn btn-danger" ajax="false"
+							action="#{carrinhoMB.finalizarCompra()}" />
+					</h:form>
+				</div>
+			</div>
+			<br />
+			<!-- FIM DO BOTÃO CADASTRAR -->
+			<br />
+			<div class="alert alert-info">
+				<h:form id="frmMsg">
+					<label>Quantidade:</label>
+					<h:outputLabel value="#{carrinhoMB.quantidade}" />
+					<br />
+					<label>Preço total:</label>
+					<h:outputLabel value="#{carrinhoMB.total}" />
+				</h:form>
+			</div>
+			<!-- TABELA -->
+			<h:form id="form">
+				<p:dataGrid var="obj" value="#{carrinhoMB.listaProdutos}"
+					columns="3" layout="grid" rows="12" paginator="true"
+					paginatorPosition="bottom" id="cars"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="6,12,16">
+					<f:facet name="header">
+			            Produtos
+			        </f:facet>
+
+					<p:panel style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%">
+							<img src="../img/img.png" />
+
+
+							<h:outputText value="#{obj.descricao}" />
+
+							<p:commandLink update=":form:carDetail"
+								oncomplete="PF('carDialog').show()" title="View Detail">
+								<h:outputText styleClass="ui-icon ui-icon-search"
+									style="margin:0 auto;" />
+								<f:setPropertyActionListener value="#{obj}"
+									target="#{carrinhoMB.produto}" />
+							</p:commandLink>
+
+
+							<br />
+							<p:commandButton icon="ui-icon-cart" title="Comprar"
+								alt="Comprar" style="background:#00FF00"
+								actionListener="#{carrinhoMB.adicionarProduto(obj)}"
+								update=":frmMsg">
+								<p:confirm header="Confirmação" message="Deseja comprar" />
+							</p:commandButton>
+
+						</h:panelGrid>
+					</p:panel>
+
+				</p:dataGrid>
+
+				<p:dialog header="Produto informação" widgetVar="carDialog"
+					closeOnEscape="true" modal="true" showEffect="fade"
+					hideEffect="fade" resizable="false">
+					<p:outputPanel id="carDetail" style="text-align:center;">
+						<h:panelGrid columns="2"
+							rendered="#{not empty carrinhoMB.produto}">
+							<f:facet name="header">
+								<img src="../img/img.png" />
+							</f:facet>
+
+							<h:outputText value="Marca:" />
+							<h:outputText value="#{carrinhoMB.produto.marca}" />
+
+							<h:outputText value="Categoria:" />
+							<h:outputText value="#{carrinhoMB.produto.categoria}" />
+
+							<h:outputText value="Descrição:" />
+							<h:outputText value="#{carrinhoMB.produto.descricao}" />
+
+							<h:outputText value="Preço" />
+							<h:outputText value="R$#{carrinhoMB.produto.preco}" />
+						</h:panelGrid>
+					</p:outputPanel>
+				</p:dialog>
+
+
+				<!-- MODAL DE CONFIRMAÇÃO -->
+				<p:confirmDialog global="true">
+					<p:commandButton value="Sim" type="button"
+						styleClass="ui-confirmdialog-yes ui-priority-primary"
+						icon="ui-icon-check" />
+
+					<p:commandButton value="Não" type="button"
+						styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+				</p:confirmDialog>
+				<!-- FIM DO MODAL DE CONFIRMAÇÃO -->
+			</h:form>
+			<!-- FIM DA TABELA -->
+		</ui:define>
+
+
+		<!--FIM DA TABELA-->
+
+
+	</ui:composition>
+</h:body>
+</html>

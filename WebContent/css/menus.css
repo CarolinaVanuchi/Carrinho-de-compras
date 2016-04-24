@@ -1,0 +1,46 @@
+/* MENU LATERAL */
+@media(min-width:768px) {
+    .side-nav {
+        position: fixed;
+        top: 51px;
+        width: 220px;
+        background-color: #f8f8f8;
+        bottom: 0;
+
+    }
+
+    .side-nav li a:hover,
+    .side-nav li a:focus {
+     background-color: #FF7F24 !important;
+     width: 220px;
+        
+    }
+}
+
+
+.side-nav>li>ul {
+    padding: 0;
+}
+
+.side-nav>li>a {
+        color: #4F4F4F;
+        width: 220px;
+    }
+
+.side-nav>li>ul>li>a {
+    display: block;
+    padding: 10px 15px 10px 38px;
+    text-decoration: none;   
+}
+
+/* FIM MENU LATERAL */
+
+.cor-menu{
+    background-color: #5CB85C;
+}
+
+ul>li>a{
+    color: #4F4F4F;
+    font-size: 15px;
+    font-weight: 600;
+}

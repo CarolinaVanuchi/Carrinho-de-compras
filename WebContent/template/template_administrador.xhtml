@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<title>AnimesLife - Sua loja de produtos de animes preferida!</title>
+
+	<link rel="stylesheet" href="../css/bootstrap.min.css"></link>
+	<link rel="stylesheet" href="../css/menus.css"></link>
+	<link rel="stylesheet" href="../css/style.css"></link>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"></link>
+	<script src="../js/bootstrap.min.js"></script>
+
+
+</h:head>
+<h:body>
+	<div id="wrapper">
+		<nav class="navbar navbar-fixed-top navbar-default"
+			role="navigation">
+
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse"
+				data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span> <span
+					class="icon-bar"></span> <span class="icon-bar"></span> <span
+					class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand titulo" href="../index.jsf">AnimesLife - Sua loja de produto de animes preferida!!</a>
+		</div>
+
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li><a href="../administrador/lista_produto.jsf"><i class="fa fa-product-hunt"></i> Produto</a></li>
+				<li><a href="../index.jsf"><i class="fa fa-power-off"></i> Sair</a></li>
+			</ul>
+		</div>
+		</nav>
+
+		<div id="page-wrapper">
+			<div class="container-fluid">
+				<div id="conteudo">
+					<ui:insert name="conteudo">
+					</ui:insert>
+				</div>
+			</div>
+		</div>
+	</div>
+</h:body>
+</html>

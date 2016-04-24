@@ -1,0 +1,38 @@
+body {
+	margin-top: 100px;
+	background-color: #FFFFFF;
+}
+
+@media ( min-width :768px) {
+	body {
+		margin-top: 50px;
+	}
+}
+
+#wrapper {
+	padding-left: 0;
+}
+
+#page-wrapper {
+	width: 100%;
+	padding: 0;
+	background-color: #fff;
+}
+
+@media ( min-width :768px) {
+	#wrapper {
+		padding-left: 225px;
+	}
+	#page-wrapper {
+		padding: 10px;
+	}
+}
+
+.centro {
+	margin: 0 auto !important;
+	float: none !important;
+}
+
+.titulo{
+	color: #FF7F24 !important;
+}

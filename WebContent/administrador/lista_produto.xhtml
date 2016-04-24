@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/template_administrador.xhtml">
+		<ui:define name="conteudo">
+			<!-- TITULO -->
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-header">Lista de produtos</h1>
+
+				</div>
+			</div>
+			<!-- FIM TITULO -->
+			<!-- BOTÃO CADASTRAR -->
+			<div class="row container-fluid">
+				<div class="col-md-2">
+					<h:form id="frmCadastrar">
+						<p:commandButton icon="ui-icon-plus"
+							action="#{produtoMB.cadastrar()}" value="Cadastrar"
+							title="Cadastrar" />
+					</h:form>
+				</div>
+			</div>
+			<br />
+			<!-- FIM DO BOTÃO CADASTRAR -->
+			<!-- TABELA-->
+			<div class="col-md-12">
+				<h:form id="frmTabela">
+					<p:dataTable id="tabela" value="#{produtoMB.produtos}" var="obj"
+						rows="10" paginator="true" paginatorPosition="bottom"
+						emptyMessage="Nenhuma categoria cadastrado"
+						rowsPerPageTemplate="5,15,30,100">
+						
+						<p:column filterBy="#{obj.descricao}" headerText="Marca">
+							<h:outputText value="#{obj.marca}" />
+						</p:column>
+						<p:column filterBy="#{obj.descricao}" headerText="Categoria">
+							<h:outputText value="#{obj.categoria}" />
+						</p:column>
+						<p:column filterBy="#{obj.descricao}" headerText="Produto">
+							<h:outputText value="#{obj.descricao}" />
+						</p:column>
+						<p:column filterBy="#{obj.quantidade}" headerText="Quantidade">
+							<h:outputText value="#{obj.quantidade}" />
+						</p:column>
+						<p:column filterBy="#{obj.preco}" headerText="Preço">
+							<h:outputText value="#{obj.preco}" />
+						</p:column>
+						<p:column headerText="Ações" style="width:100px">
+
+							<p:commandButton icon="ui-icon-pencil"
+								action="#{produtoMB.alterar()}">
+								<f:setPropertyActionListener value="#{obj}"
+									target="#{produtoMB.objeto}" />
+							</p:commandButton>
+
+
+							<p:commandButton icon="ui-icon-trash" title="Excluir"
+								actionListener="#{produtoMB.excluir(obj)}" update=":frmTabela">
+								<p:confirm header="Confirmação" message="Deseja excluir?" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+			<!-- MODAL DE CONFIRMAÇÃO -->
+			<p:confirmDialog global="true">
+			<h:form>
+				<p:commandButton value="Sim" type="button"
+					styleClass="ui-confirmdialog-yes ui-priority-primary"
+					icon="ui-icon-check" />
+
+				<p:commandButton value="Não" type="button"
+					styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+					</h:form>
+			</p:confirmDialog>
+			<!-- FIM DO MODAL DE CONFIRMAÇÃO -->
+			<!--FIM DA TABELA-->
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

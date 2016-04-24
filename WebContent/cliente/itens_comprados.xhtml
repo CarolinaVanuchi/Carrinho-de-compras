@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition template="../template/template_carrinho_compras.xhtml">
+		<ui:define name="conteudo">
+			<!-- TITULO -->
+			<div class="row">
+				<div class="col-md-12">
+					<h1 class="page-header">Itens comprados</h1>
+
+				</div>
+			</div>
+			<!-- FIM TITULO -->
+
+
+			<!-- TABELA-->
+			<!-- CORREIOS -->
+			<div class="col-md-12">
+				<h:panelGrid columns="3">
+					<h:form>
+						<p:outputLabel value="CEP:" />
+						<p:inputText value="#{carrinhoMB.cepDestino}" />
+						<p:commandButton value="Calcular" update=":pgValores"
+							style="background:#FF8C69; color:#FFFFFF"
+							actionListener="#{carrinhoMB.calcularFrete()}" />
+					</h:form>
+				</h:panelGrid>
+			</div>
+			<!-- FIM DO CORREIOS -->
+			<br />
+			<br />
+			<!-- EXIBIR AS INFORMAÇÕES -->
+			<div class="col-md-12 alert alert-info">
+				<h:panelGrid id="pgValores" columns="2">
+					<p:outputLabel value="Valor frete:" />
+					<h:outputLabel value="R$#{carrinhoMB.retorno.valorFrete}" />
+					<p:outputLabel value="Prazo de entrega:" />
+					<h:outputLabel value="#{carrinhoMB.retorno.diasEntrega}" />
+					<p:outputLabel value="Valor total da compra:" />
+					<h:outputLabel value="R$#{carrinhoMB.total}" />
+				</h:panelGrid>
+			</div>
+			<!-- FIM DE EXIBIR AS INFORMAÇÕES -->
+
+
+			<div class="col-md-12">
+				<h:form id="frmTabela">
+					<p:dataTable id="tabela" value="#{carrinhoMB.produtos}" var="obj"
+						rows="10" paginator="true" paginatorPosition="bottom"
+						emptyMessage="Nenhum produto disponível"
+						rowsPerPageTemplate="5,15,30,100">
+
+						<p:column filterBy="#{obj.marca}" headerText="Marca">
+							<h:outputText value="#{obj.marca}" />
+						</p:column>
+						<p:column filterBy="#{obj.categoria}" headerText="Categoria">
+							<h:outputText value="#{obj.categoria}" />
+						</p:column>
+						<p:column filterBy="#{obj.descricao}" headerText="Produto">
+							<h:outputText value="#{obj.descricao}" />
+						</p:column>
+						<p:column filterBy="#{obj.quantidade}" headerText="Quantidade">
+							<h:outputText value="#{obj.quantidade}" />
+						</p:column>
+						<p:column filterBy="#{obj.preco}" headerText="Preço">
+							<h:outputText value="R$ #{obj.preco}" />
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
